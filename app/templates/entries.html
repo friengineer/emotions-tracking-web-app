@@ -4,16 +4,52 @@
 
   <h2>View Entries</h2>
 
-  <!-- creates the components for each entry in hte database -->
-  <!-- {% for i in entries %}
+  <!-- creates the components for each entry in the database -->
+  {% for i in entries %}
     <div class="container-fluid">
       <p>
-        <strong>Date:</strong> <br>
-        <strong>Emotions:</strong> <br>
-        <strong>Reasons for being stressed:</strong> <br>
-        <strong>Additional comments:</strong> <br>
+        <strong>Emotion ID</strong> {{ i.id }}<br>
+        <strong>Emotion</strong> {{ i.emotion }}<br>
       </p>
     </div>
-  {% endfor %} -->
+  {% endfor %}
+
+  <!-- contains the form for updating an entry -->
+  <div class="text-center">
+    <h3>Update Entry</h3>
+
+    <p>Enter the number of the entry you would like to update along with the emotion you would like it to be updated to.</p>
+
+    <form method="post" name="task">
+      {{ form.hidden_tag() }}
+
+      <p>
+        <label>Entry Number</label>
+        {{ form.number }}<br>
+        {% for i in form.number.errors %}
+          <span style="color: red;">[{{ i }}]</span>
+        {% endfor %}
+
+        <label>New Emotion</label>
+        {{ form.emotion }}<br>
+        {% for i in form.emotion.errors %}
+          <span style="color: red;">[{{ i }}]</span>
+        {% endfor %}
+
+        <!-- displays error messages relating to the form -->
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul id="messages">
+              {% for i in messages %}
+                <li>{{ i }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+
+        <p><input type="submit" value="Update"></p>
+      </p>
+    </form>
+  </div>
 
 {% endblock %}
