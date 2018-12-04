@@ -8,25 +8,9 @@
     {{ form.hidden_tag() }}
 
     <p>
-      {{ form.emotions }}
+      {{ form.emotion }}
 
-      {% for i in form.emotions.errors %}
-        <span style="color: red;">[{{ i }}]</span>
-      {% endfor %}
-    </p>
-
-    <p>
-      {{ form.stress }}
-
-      {% for i in form.stress.errors %}
-        <span style="color: red;">[{{ i }}]</span>
-      {% endfor %}
-    </p>
-
-    <p>
-      {{ form.comments }}
-
-      {% for i in form.comments.errors %}
+      {% for i in form.emotion.errors %}
         <span style="color: red;">[{{ i }}]</span>
       {% endfor %}
     </p>
@@ -35,8 +19,8 @@
     {% with messages = get_flashed_messages() %}
       {% if messages %}
         <ul id="messages">
-          {% for message in messages %}
-            <li>{{ message }}</li>
+          {% for i in messages %}
+            <li>{{ i }}</li>
           {% endfor %}
         </ul>
       {% endif %}

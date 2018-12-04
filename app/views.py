@@ -32,8 +32,6 @@ def create():
         # displayed and if not, an error message is displayed
         try:
             # submitEntry(form.emotions.data, form.stress.data, form.comments.data)
-            print(form.emotions.data)
-            print(form.stress.data)
             flash('The entry has been created.')
         except:
             flash('An error occurred and the entry was not created.')
@@ -41,11 +39,11 @@ def create():
     return render_template('create.html',
                            form=form)
 
-# this function adds the data about the new emotions and stress entry to the database
-def submitEntry(emotions, stress, comments):
+# this function adds the data about the new emotion entry to the database
+def submitEntry(emotion):
     from app import db, models
     import datetime
 
-    newEntry = models.Entry(date=date, emotions=emotions, stress=stress, comments=comments)
+    newEntry = models.Entry(emotions=emotions)
     db.session.add(newEntry)
     db.session.commit()
