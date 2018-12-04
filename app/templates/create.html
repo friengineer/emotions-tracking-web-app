@@ -7,9 +7,41 @@
   <form action="" method="post" name="entry">
     {{ form.hidden_tag() }}
 
-    <p>{{ form.emotions }}</p>
-    <p>{{ form.stress }}</p>
-    <p>{{ form.comments }}</p>
+    <p>
+      {{ form.emotions }}
+
+      {% for i in form.emotions.errors %}
+        <span style="color: red;">[{{ i }}]</span>
+      {% endfor %}
+    </p>
+
+    <p>
+      {{ form.stress }}
+
+      {% for i in form.stress.errors %}
+        <span style="color: red;">[{{ i }}]</span>
+      {% endfor %}
+    </p>
+
+    <p>
+      {{ form.comments }}
+
+      {% for i in form.comments.errors %}
+        <span style="color: red;">[{{ i }}]</span>
+      {% endfor %}
+    </p>
+
+    <!-- displays error messages relating to the form -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul id="messages">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
     <p><input type="submit" value="Create"></p>
   </form>
 
