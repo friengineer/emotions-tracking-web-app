@@ -31,7 +31,7 @@ def create():
         # try block tests if the task has been marked as finished and if it has a success message is
         # displayed and if not, an error message is displayed
         try:
-            # submitEntry(form.emotions.data, form.stress.data, form.comments.data)
+            submitEntry(form.emotion.data)
             flash('The entry has been created.')
         except:
             flash('An error occurred and the entry was not created.')
@@ -44,6 +44,6 @@ def submitEntry(emotion):
     from app import db, models
     import datetime
 
-    newEntry = models.Entry(emotions=emotions)
+    newEntry = models.Entry(emotion=emotion)
     db.session.add(newEntry)
     db.session.commit()

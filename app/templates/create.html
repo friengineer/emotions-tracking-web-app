@@ -4,10 +4,13 @@
 
   <h2>Create Entry</h2>
 
+  <p>Enter the emotion that best sums up your mood today.</p>
+
   <form action="" method="post" name="entry">
     {{ form.hidden_tag() }}
 
     <p>
+      <label>Emotion</label>
       {{ form.emotion }}
 
       {% for i in form.emotion.errors %}
