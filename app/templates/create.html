@@ -1,0 +1,35 @@
+<!-- inherits the structure of the "base.html" file -->
+{% extends "base.html" %}
+{% block content %}
+
+  <h2>Create Entry</h2>
+
+  <p>Enter the emotion that best sums up your mood today.</p>
+
+  <form action="" method="post" name="entry">
+    {{ form.hidden_tag() }}
+
+    <p>
+      <label>Emotion</label>
+      {{ form.emotion }}
+
+      {% for i in form.emotion.errors %}
+        <span style="color: red;">[{{ i }}]</span>
+      {% endfor %}
+    </p>
+
+    <!-- displays error messages relating to the form -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul id="messages">
+          {% for i in messages %}
+            <li>{{ i }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <p><input type="submit" value="Create"></p>
+  </form>
+
+{% endblock %}
